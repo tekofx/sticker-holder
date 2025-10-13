@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://fk1aq2ffhwyu"]
+
+[ext_resource type="Script" uid="uid://ceiler6hl02hr" path="res://scenes/page/page.gd" id="1_48f4s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48f4s"]
+bg_color = Color(0.8133373, 0.5254149, 0.24920568, 1)
+
+[node name="Page" type="CanvasLayer"]
+script = ExtResource("1_48f4s")
+
+[node name="Stickers" type="Node2D" parent="."]
+z_index = 4
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_48f4s")
