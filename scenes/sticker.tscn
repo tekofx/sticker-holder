@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_imf23"]
 size = Vector2(500, 500)
 
-[node name="Sticker" type="CharacterBody2D"]
+[node name="Sticker" type="CharacterBody2D" groups=["Persist"]]
 script = ExtResource("1_imf23")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -16,5 +16,5 @@ scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_imf23")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_mpens")
