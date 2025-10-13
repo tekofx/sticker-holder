@@ -12,14 +12,12 @@ func _ready() -> void:
 	area_2d.input_event.connect(on_click)
 	var viewport_size = get_viewport_rect().size
 	global_position = Vector2(viewport_size.x/2, viewport_size.y/2)
-	
-	
-func _process(delta: float) -> void:
-	if draggable:
+
+func _process(_delta: float) -> void:
+	if draggable and !move_and_slide():
 		var pos = get_global_mouse_position() - offset
 		var viewport = get_viewport_rect()
 		var sticker_size = sprite_2d.get_rect().size*sprite_2d.scale
-		print(sticker_size)
 		global_position = Vector2(
 			clamp(pos.x, viewport.position.x + sticker_size.x/2, viewport.end.x - sticker_size.x/2),
 			clamp(pos.y, viewport.position.y + sticker_size.y/2, viewport.end.y - sticker_size.y/2)
