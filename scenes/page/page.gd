@@ -6,15 +6,6 @@ class_name Page
 
 const sticker = preload("res://scenes/sticker.tscn")
 
-func _ready() -> void:
-	for sticker in StickersManager.stickers:
-		stickers.add_child(sticker.instantiate())
-	
-	pass
-	
-	#self.position.x = -width/2
-	#self.position.y = -height/2
-
 func add_sticker(image_texture:ImageTexture):
 	var new_sticker:Sticker = sticker.instantiate()
 	stickers.add_child(new_sticker)

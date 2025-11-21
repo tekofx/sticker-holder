@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Global="*res://shared/constants.gd"
 InteractionManager="*res://shared/interaction_manager.gd"
 StickersManager="*res://shared/stickers_manager.gd"
+SaveManager="*res://shared/save_manager.gd"
 
 [display]
 
