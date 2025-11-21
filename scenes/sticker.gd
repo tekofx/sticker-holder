@@ -4,6 +4,7 @@ class_name Sticker
 @onready var area_2d: Area2D = $Area2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @export var page: int = 0
+@export var sticker_id: int = randi()
 
 var draggable:bool = false
 var offset = Vector2.ZERO
@@ -27,11 +28,16 @@ func on_click(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
 	
 	if event.is_action_pressed("left_click"):
 		
+		if InteractionManager.STICKER_MOVING!=sticker_id and InteractionManager.STICKER_MOVING!=-1:
+			return
+		
 		if draggable:
+			InteractionManager.set_sticker_moving(-1)
 			var tween = create_tween()
 			tween.tween_property(self, "scale", Vector2(1, 1), 0.1)
 			
 		else:
+			InteractionManager.set_sticker_moving(sticker_id)
 			var tween = create_tween()
 			tween.tween_property(self, "scale", Vector2(1.05, 1.05), 0.1)
 		draggable=!draggable
@@ -43,6 +49,7 @@ func save():
 		"parent" : get_parent().get_path(),
 		"pos_x" : position.x, # Vector2 is not supported by JSON
 		"pos_y" : position.y,
-		"page" : page
+		"page" : page,
+		"sticker_id": sticker_id,
 	}
 	return save_dict
