@@ -8,6 +8,7 @@ class_name Sticker
 
 var draggable:bool = false
 var offset = Vector2.ZERO
+var shadow:Sprite2D = null
 
 func _ready() -> void:
 	area_2d.input_event.connect(on_click)
@@ -33,13 +34,21 @@ func on_click(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
 		
 		if draggable:
 			InteractionManager.set_sticker_moving(-1)
-			var tween = create_tween()
-			tween.tween_property(self, "scale", Vector2(1, 1), 0.1)
+			var tween = create_tween().set_parallel(true)
+			tween.tween_property(self, "scale", Vector2(1, 1), 0.2).set_trans(Tween.TRANS_SPRING)
+			tween.tween_property(shadow, "scale", Vector2(0.2,0.2),0.2).set_trans(Tween.TRANS_SPRING)
+			tween.finished.connect(func(): remove_child(shadow))
 			
 		else:
 			InteractionManager.set_sticker_moving(sticker_id)
-			var tween = create_tween()
-			tween.tween_property(self, "scale", Vector2(1.05, 1.05), 0.1)
+			shadow = sprite_2d.duplicate()
+			shadow.modulate=Color(0,0,0,0.2)
+			shadow.z_index=0
+			add_child(shadow)
+			
+			var tween = create_tween().set_parallel(true)
+			tween.tween_property(self, "scale", Vector2(1.2, 1.2), 0.2).set_trans(Tween.TRANS_SPRING)
+			tween.tween_property(shadow, "scale", Vector2(0.23,0.23),0.2).set_trans(Tween.TRANS_SPRING)
 		draggable=!draggable
 		offset = get_global_mouse_position() - global_position
 			
