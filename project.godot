@@ -24,8 +24,8 @@ SaveManager="*res://shared/save_manager.gd"
 
 [display]
 
-window/size/viewport_width=400
-window/size/viewport_height=800
+window/size/viewport_width=1080
+window/size/viewport_height=1920
 window/handheld/orientation=1
 
 [input]

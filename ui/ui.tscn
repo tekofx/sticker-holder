@@ -13,6 +13,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -31.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 2
@@ -24,18 +25,22 @@ alignment = 1
 
 [node name="NextPageButton" type="Button" parent="PanelContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 60
 text = "Next"
 
 [node name="SaveButton" type="Button" parent="PanelContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 60
 text = "Save"
 
 [node name="AddButton" type="Button" parent="PanelContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 60
 text = "Add"
 
 [node name="PrevPageButton" type="Button" parent="PanelContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 60
 text = "Prev"
 
 [node name="FileDialog" type="FileDialog" parent="."]
