@@ -8,16 +8,12 @@ class_name UI
 func _ready() -> void:
 	add_button.pressed.connect(_on_add_click)
 	save_button.pressed.connect(SaveManager.save_game)
-	
 	file_dialog.connect("file_selected", _on_file_selected)
-
 
 func _on_add_click():
 	file_dialog.show()
 
-
 func _on_file_selected(path):
-	print(path)
 	var img = Image.new()
 	var err = img.load(path)
 	if err != OK:
