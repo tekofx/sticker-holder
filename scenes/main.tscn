@@ -53,3 +53,6 @@ text = "Add"
 [node name="PrevPageButton" type="Button" parent="UI/Control/HBoxContainer"]
 layout_mode = 2
 text = "Prev"
+
+[node name="FileDialog" type="FileDialog" parent="."]
+oversampling_override = 1.0

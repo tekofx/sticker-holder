@@ -4,15 +4,40 @@ extends Node2D
 @onready var prev_page_button: Button = $UI/Control/HBoxContainer/PrevPageButton
 @onready var save_button: Button = $UI/Control/HBoxContainer/SaveButton
 @onready var page: Page = $Page
-
+@onready var file_dialog = $FileDialog
 
 func _ready() -> void:
-	add_button.pressed.connect(page.add_sticker)
+	#add_button.pressed.connect(page.add_sticker)
+	add_button.pressed.connect(_on_add_click)
 	save_button.pressed.connect(save_game)
+	file_dialog.access = FileDialog.ACCESS_FILESYSTEM
+	file_dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
+	file_dialog.add_filter("*.png", "PNG Images")
+	file_dialog.add_filter("*.jpg", "JPEG Images")
+	file_dialog.add_filter("*.jpeg", "JPEG Images")
+	file_dialog.add_filter("*.webp", "WebP Images")
+	file_dialog.add_filter("*.svg", "SVG Images")   
+	file_dialog.connect("file_selected", _on_file_selected)
 	load_game()
 	
 
+func _on_add_click():
+	file_dialog.show()
 
+func _on_file_selected(path):
+	print(path)
+	var img = Image.new()
+	var err = img.load(path)
+	if err != OK:
+		push_error("Failed to load image")
+		return
+	
+	# Convert to ImageTexture
+	var texture = ImageTexture.create_from_image(img)
+	
+	# Apply to a Sprite2D or Custom Node for processing
+	page.add_sticker(texture)
+	#detect_edges_and_mask(img)  
 func save_game():
 	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
