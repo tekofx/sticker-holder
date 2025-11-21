@@ -14,7 +14,7 @@ func _ready() -> void:
 	global_position = Vector2(viewport_size.x/2, viewport_size.y/2)
 
 func _process(_delta: float) -> void:
-	if draggable and !move_and_slide():
+	if draggable:
 		var pos = get_global_mouse_position() - offset
 		var viewport = get_viewport_rect()
 		var sticker_size = sprite_2d.get_rect().size*sprite_2d.scale
@@ -24,6 +24,7 @@ func _process(_delta: float) -> void:
 		)
 	
 func on_click(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
+	
 	if event.is_action_pressed("left_click"):
 		
 		if draggable:
